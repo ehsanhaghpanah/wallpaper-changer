@@ -1,0 +1,68 @@
+﻿
+
+https://stackoverflow.com/questions/8414635/how-do-i-change-my-windows-desktop-wallpaper-programatically
+https://stackoverflow.com/questions/1061678/change-desktop-wallpaper-using-code-in-net
+
+c# change windows desktop background transition animation
+
+
+How to add fade effect when changing wallpaper using c#
+https://stackoverflow.com/questions/1978323/how-to-add-fade-effect-when-changing-wallpaper-using-c-sharp
+https://pulse.codeplex.com/SourceControl/changeset/view/72677#Pulse/Providers/WinAPI/WinAPI.cs
+
+[
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 104, "D": 64, "Size": 36.0, "Text": "restore point at"},
+{"Days":"00", "V": true, "W": 1000, "H": 99, "L": 921, "T": 172, "D": 36, "Size": 64.0, "Text": "{0}"},
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 230, "D": 58, "Size": 36.0, "Text": "morning"},
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 300, "D": 70, "Size": 36.0, "Text": "today"},
+{"Days":"00", "V": true, "W": 1000, "H": 99, "L": 921, "T": 340, "D": 40, "Size": 64.0, "Text": "{1}"},
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 415, "D": 75, "Size": 64.0, "Text": "{2}"},
+]
+
+[
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 128, "D": 11, "Size": 28.0, "Text": "previous run(s)"},
+{"Days":"24", "V": true, "W": 1000, "H": 70, "L": 921, "T": 164, "D": 36, "Size": 28.0, "Text": "June 22, July 16 (24), 5 errors yield failure"},
+{"Days":"03", "V": true, "W": 1000, "H": 70, "L": 921, "T": 200, "D": 36, "Size": 28.0, "Text": "June 17, July 20 (3), complete failure"},
+{"Days":"23", "V": true, "W": 1000, "H": 70, "L": 921, "T": 236, "D": 36, "Size": 28.0, "Text": "July 21, August 13 (23), failure"},
+{"Days":"02", "V": true, "W": 1000, "H": 70, "L": 921, "T": 272, "D": 36, "Size": 28.0, "Text": "August 14, August 16 (2), complete failure"},
+{"Days":"13", "V": true, "W": 1000, "H": 70, "L": 921, "T": 272, "D": 36, "Size": 28.0, "Text": "August 17, August 30 (13), lots of errors yield failure"},
+{"Days":"09", "V": true, "W": 1000, "H": 70, "L": 921, "T": 272, "D": 36, "Size": 28.0, "Text": "August 31, September 9 (9), errors yield failure"},
+{"Days":"15", "V": true, "W": 1000, "H": 70, "L": 921, "T": 272, "D": 36, "Size": 28.0, "Text": "September 10, September 25 (15), errors yield failure"},
+{"Days":"01", "V": true, "W": 1000, "H": 70, "L": 921, "T": 272, "D": 36, "Size": 28.0, "Text": "September 26, September 27 (1), fatal error"},
+{"Days":"05", "V": true, "W": 1000, "H": 70, "L": 921, "T": 272, "D": 36, "Size": 28.0, "Text": "September 28, October 2 (5), failure"},
+{"Days":"28", "V": true, "W": 1000, "H": 70, "L": 921, "T": 272, "D": 36, "Size": 28.0, "Text": "October 3, October 31 (28), failure"},
+{"Days":"01", "V": true, "W": 1000, "H": 70, "L": 921, "T": 272, "D": 36, "Size": 28.0, "Text": "November 1, November 2 (1), fatal error"},
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 336, "D": 64, "Size": 36.0, "Text": "restore point at"},
+{"Days":"00", "V": true, "W": 1000, "H": 99, "L": 921, "T": 372, "D": 36, "Size": 64.0, "Text": "{0}"},
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 430, "D": 58, "Size": 36.0, "Text": "morning"},
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 500, "D": 70, "Size": 36.0, "Text": "today"},
+{"Days":"00", "V": true, "W": 1000, "H": 99, "L": 921, "T": 540, "D": 40, "Size": 64.0, "Text": "{1}"},
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 615, "D": 75, "Size": 64.0, "Text": "{2}"},
+]
+
+[
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 104, "D": 64, "Size": 36.0, "Text": "restore point at"},
+{"Days":"00", "V": true, "W": 1000, "H": 99, "L": 921, "T": 172, "D": 36, "Size": 64.0, "Text": "{0}"},
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 230, "D": 58, "Size": 36.0, "Text": "morning"},
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 300, "D": 70, "Size": 36.0, "Text": "today"},
+{"Days":"00", "V": true, "W": 1000, "H": 99, "L": 921, "T": 340, "D": 40, "Size": 64.0, "Text": "{1}"},
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 415, "D": 75, "Size": 64.0, "Text": "{2}"},
+]
+
+[
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 128, "D": 11, "Size": 28.0, "Text": "previous run(s)"},
+{"Days":"24", "V": true, "W": 1000, "H": 70, "L": 921, "T": 164, "D": 36, "Size": 28.0, "Text": "June 22, July 16 (24), 5 errors yield failure"},
+{"Days":"03", "V": true, "W": 1000, "H": 70, "L": 921, "T": 200, "D": 36, "Size": 28.0, "Text": "June 17, July 20 (3), complete failure"},
+{"Days":"23", "V": true, "W": 1000, "H": 70, "L": 921, "T": 236, "D": 36, "Size": 28.0, "Text": "July 21, August 13 (23), failure"},
+{"Days":"02", "V": true, "W": 1000, "H": 70, "L": 921, "T": 272, "D": 36, "Size": 28.0, "Text": "August 14, August 16 (2), complete failure"},
+{"Days":"13", "V": true, "W": 1000, "H": 70, "L": 921, "T": 272, "D": 36, "Size": 28.0, "Text": "August 17, August 30 (13), lots of errors yield failure"},
+{"Days":"09", "V": true, "W": 1000, "H": 70, "L": 921, "T": 272, "D": 36, "Size": 28.0, "Text": "August 31, September 9 (9), errors yield failure"},
+{"Days":"15", "V": true, "W": 1000, "H": 70, "L": 921, "T": 272, "D": 36, "Size": 28.0, "Text": "September 10, September 25 (15), errors yield failure"},
+{"Days":"01", "V": true, "W": 1000, "H": 70, "L": 921, "T": 272, "D": 36, "Size": 28.0, "Text": "September 26, September 27 (1), fatal error"},
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 336, "D": 64, "Size": 36.0, "Text": "restore point at"},
+{"Days":"00", "V": true, "W": 1000, "H": 99, "L": 921, "T": 372, "D": 36, "Size": 64.0, "Text": "{0}"},
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 430, "D": 58, "Size": 36.0, "Text": "morning"},
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 500, "D": 70, "Size": 36.0, "Text": "today"},
+{"Days":"00", "V": true, "W": 1000, "H": 99, "L": 921, "T": 540, "D": 40, "Size": 64.0, "Text": "{1}"},
+{"Days":"00", "V": true, "W": 1000, "H": 70, "L": 921, "T": 615, "D": 75, "Size": 64.0, "Text": "{2}"},
+]

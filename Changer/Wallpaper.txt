@@ -1,0 +1,163 @@
+﻿/**
+ * Copyright (C) moniüs, 2017.
+ * All rights reserved.
+ * E. Haghpanah; haghpanah@monius.net
+ */
+
+using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Runtime.InteropServices;
+
+namespace Changer
+{
+	/// <summary>
+	/// Wallpaper
+	/// </summary>
+	public class Wallpaper
+	{
+		private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+		private static readonly Random random = new Random((int) DateTime.Now.Ticks);
+
+		const int SPI_SETDESKWALLPAPER = 20;
+		const int SPIF_UPDATEINIFILE = 0x01;
+		const int SPIF_SENDWININICHANGE = 0x02;
+
+		[DllImport("user32.dll", CharSet = CharSet.Auto)]
+		static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
+
+		public void Set()
+		{
+			try
+			{
+				Calc();
+				SystemParametersInfo(
+					SPI_SETDESKWALLPAPER, 
+					0, 
+					Configuration.TargetImageName, 
+					SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE
+				);
+			}
+			catch (Exception p)
+			{
+				logger.Error(p);
+			}
+		}
+
+		private void Calc()
+		{
+			try
+			{
+				var date_a = Configuration.StartDate;
+				var date_b = DateTime.Today;
+				var span_t = date_b.Subtract(date_a);
+
+				var n = GetImageName();
+				logger.Info($"image name = {n}");
+				var b = new Bitmap(n ?? Configuration.SourceImageName);
+
+				var base_a = 128;
+				var base_b = 36;
+				Draw(b, "previous run(s)", new RectangleF(921, base_a, 1000, 70), 28);
+				Draw(b, "June 22, July 16 (24), 5 errors", new RectangleF(921, base_a + (base_b * 1), 1000, 70), 28);
+				Draw(b, "June 17, July 20 (3), complete failure", new RectangleF(921, base_a + (base_b * 2), 1000, 70), 28);
+				Draw(b, "July 21, August 13 (23), failure", new RectangleF(921, base_a + (base_b * 3), 1000, 70), 28);
+				var base_c = base_a + (base_b * 3) + 64;
+				Draw(b, "restore point at", new RectangleF(921, base_c, 1000, 70), 36);
+				Draw(b, date_a.ToLongDateString(), new RectangleF(922, base_c + 44, 1000, 100), 64);
+				Draw(b, "morning", new RectangleF(918, base_c + 108, 1000, 70), 36);
+				var base_d = base_c + 44 + 108 + 36;
+				Draw(b, "today", new RectangleF(918, base_d, 1000, 70), 36);
+				Draw(b, date_b.ToLongDateString(), new RectangleF(922, base_d + 44, 1000, 100), 64);
+				Draw(b, "(" + span_t.Days + ")", new RectangleF(922, base_d + 108, 1000, 100), 64);
+
+				////
+				//// weak points
+				//Draw(b, "weak points", new RectangleF(921, 584, 1000, 70), 24, Brushes.DarkRed);
+				//Draw(b, new DateTime(2017, 7, 3).ToLongDateString(), new RectangleF(921, 620, 1000, 70), 28, Brushes.DarkRed);
+				//Draw(b, new DateTime(2017, 7, 6).ToLongDateString(), new RectangleF(921, 660, 1000, 70), 28, Brushes.DarkRed);
+				//Draw(b, new DateTime(2017, 7, 13).ToLongDateString(), new RectangleF(921, 700, 1000, 70), 28, Brushes.DarkRed);
+				//Draw(b, new DateTime(2017, 7, 14).ToLongDateString(), new RectangleF(921, 740, 1000, 70), 28, Brushes.DarkRed);
+
+				b.Save(Configuration.TargetImageName, ImageFormat.Jpeg);
+			}
+			catch (Exception p)
+			{
+				logger.Error(p);
+			}
+		}
+
+		private void Draw(Bitmap b, string t, RectangleF r, float z)
+		{
+			using (Graphics g = Graphics.FromImage(b))
+			{
+				//g.DrawRectangle(new Pen(Color.Red, 2), r.Left, r.Top, r.Width, r.Height);
+				g.SmoothingMode = SmoothingMode.AntiAlias;
+				g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+				g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+				StringFormat f = new StringFormat
+				{
+					Alignment = StringAlignment.Far,
+					LineAlignment = StringAlignment.Center
+				};
+				g.DrawString(t, new Font("Segoe UI Light", z, FontStyle.Regular), Brushes.White, r, f);
+			}
+		}
+
+		private void Draw(Bitmap b, string t, RectangleF r, float z, Brush brush)
+		{
+			using (Graphics g = Graphics.FromImage(b))
+			{
+				//g.DrawRectangle(new Pen(Color.Red, 2), r.Left, r.Top, r.Width, r.Height);
+				g.SmoothingMode = SmoothingMode.AntiAlias;
+				g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+				g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+				StringFormat f = new StringFormat
+				{
+					Alignment = StringAlignment.Far,
+					LineAlignment = StringAlignment.Center
+				};
+				g.DrawString(t, new Font("Segoe UI Light", z, FontStyle.Regular), brush, r, f);
+			}
+		}
+
+		private string GetImageName()
+		{
+			try
+			{
+				var list = Directory.GetFiles(Configuration.SourceImagePath);
+				logger.Info($"list count = {list.Length}");
+				var numb = random.Next(0, list.Length);
+				logger.Info($"item index = {numb}");
+				return list[numb];
+			}
+			catch (Exception p)
+			{
+				logger.Error(p);
+				return null;
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+[
+{"W": 1000, "H": 70,  "L": 921, "T": 128, "D": 36, "Size": 28.0, "Text": "previous run(s)"},
+{"W": 1000, "H": 70,  "L": 921, "T": 164, "D": 36, "Size": 28.0, "Text": "June 22, July 16 (24), 5 errors yields failure"},
+{"W": 1000, "H": 70,  "L": 921, "T": 200, "D": 36, "Size": 28.0, "Text": "June 17, July 20 (3), complete failure"},
+{"W": 1000, "H": 70,  "L": 921, "T": 236, "D": 36, "Size": 28.0, "Text": "July 21, August 13 (23), failure"},
+{"W": 1000, "H": 70,  "L": 921, "T": 272, "D": 64, "Size": 28.0, "Text": "August 14, August 16 (2), complete failure"},
+{"W": 1000, "H": 70,  "L": 921, "T": 336, "D": 36, "Size": 36.0, "Text": "restore point at"},
+{"W": 1000, "H": 100, "L": 921, "T": 372, "D": 58, "Size": 64.0, "Text": "{0}"},
+{"W": 1000, "H": 70,  "L": 921, "T": 430, "D": 70, "Size": 36.0, "Text": "morning"},
+{"W": 1000, "H": 70,  "L": 921, "T": 500, "D": 40, "Size": 36.0, "Text": "today"},
+{"W": 1000, "H": 100, "L": 921, "T": 540, "D": 75, "Size": 64.0, "Text": "{1}"},
+{"W": 1000, "H": 70,  "L": 921, "T": 615, "D": 70, "Size": 64.0, "Text": "{2}"},
+]
